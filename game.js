@@ -15,7 +15,7 @@ var buttonColours = ["green", "red", "yellow", "blue"];
 var randomChosenColour = null;
 
 
-//Used to start the game
+//Start the game by listing if the user pressed ENTER
 $(document).on('keypress',function(e) {
   if(e.which == 13) {
       nextSequence();
@@ -51,7 +51,7 @@ function userClicked(buttonClicked){
 
 
 
-
+//Generates the next sequence of the game
 function nextSequence() {
   userClickedPattern = [];
 
@@ -76,6 +76,9 @@ function nextSequence() {
 
 }
 
+
+//Checks to see if the user has the correct answer as the random color generated
+//If it is wrong, the game ends
 function checkAnswer(curentLevel){
   
     console.log(userClickedPattern[curentLevel]);
@@ -108,7 +111,7 @@ function checkAnswer(curentLevel){
 
 
 
-
+//plays the audio sound corisponding to the button chosen
 function playAudio(buttonClicked){
 
   var audiofile = new Audio ('sounds/' + buttonClicked + '.mp3');
@@ -117,12 +120,15 @@ function playAudio(buttonClicked){
 }
 
 
+//plays an animation corrisponding to the button chosean
 function buttonAnnimation(buttonClicked){
 
   $("#"+buttonClicked).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 
 }
 
+
+//Used to restart the game 
 function startOver(){
   playAudio("wrong");
   $("body").addClass("game-over");
