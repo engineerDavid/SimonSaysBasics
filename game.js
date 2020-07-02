@@ -58,13 +58,27 @@ function nextSequence() {
 
     gamePattern.push(randomChosenColour);
 
-    playAudio(randomChosenColour);
-
-    buttonAnnimation(randomChosenColour);
-
     $("#level-title").text("Level " + level);
 
     level++;
+
+    repeatGamePattern();
+
+}
+
+//Displays the random game pattern generated as the user progess through each level
+function repeatGamePattern() {
+    for (var i = 0; i < gamePattern.length; i++) {
+
+        (function (index) {
+            setTimeout(function () {
+                playAudio(gamePattern[index]);
+
+                buttonAnnimation(gamePattern[index]);
+            }, i * 500);
+        })(i);
+
+    }
 
 }
 
@@ -72,7 +86,6 @@ function nextSequence() {
 // generated If it is wrong, the game ends
 function checkAnswer(curentLevel) {
 
-  
     if (gamePattern[curentLevel] === userClickedPattern[curentLevel]) {
 
         if (gamePattern.length === userClickedPattern.length) {
